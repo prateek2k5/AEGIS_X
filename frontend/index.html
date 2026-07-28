@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AEGIS-X</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<!--Notification Pop-up-->
+<div id="toast" class="toast">
+    <h4 id="toastTitle"></h4>
+    <p id="toastMessage"></p>
+</div>
+
+<body>
+    <!-- ===========================
+     Loading Screen
+=========================== -->
+<div id="loader">
+
+    <div class="loader-content">
+
+        <div class="shield">🛡️</div>
+
+        <h1>AEGIS-X</h1>
+
+        <p>Initializing AI Security Engine...</p>
+
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- ==========================================================
+         Sidebar
+    =========================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>🛡️ AEGIS-X</h2>
+
+            <p>AI Security Center</p>
+
+        </div>
+
+        <nav>
+
+            <a href="#" data-page="dashboardPage" class="active">📊 Dashboard</a>
+            <a href="#" data-page="processesPage">⚙ Processes</a>
+            <a href="#" data-page="aiPage">🤖 AI Analysis</a>
+            <a href="#" data-page="incidentPage">🚨 Incident Center</a>
+            <a href="#" data-page="reportsPage">📄 Reports</a>
+            <a href="#" data-page="settingsPage">⚙ Settings</a>
+            <button id="logoutBtn" class="logout-btn">🚪 Logout</button>
+
+        </nav>
+
+    </aside>
+
+    <!-- ==========================================================
+         Main
+    =========================================================== -->
+
+    <main class="main">
+        <header class="topbar">
+
+    <div class="topbar-left">
+        <h1>🛡 AEGIS-X SOC</h1>
+        <p>Autonomous Threat Detection & Incident Intelligence</p>
+    </div>
+
+    <div class="topbar-right">
+
+        <div class="status-card">
+            <span class="status-dot"></span>
+            <div>
+                <strong>System Healthy</strong><br>
+                <small id="lastUpdated">Last Updated: --:--:--</small>
+            </div>
+        </div>
+
+        <div class="user-card">
+            <div class="user-avatar">👤</div>
+
+            <div class="user-info">
+                <strong id="usernameDisplay">Admin</strong>
+                <small>Security Analyst</small>
+            </div>
+        </div>
+
+    </div>
+
+</header>
+
+        
+        <!-- ===========================
+                  SOC OVERVIEW
+        =========================== -->
+        <section class="soc-overview">
+            <div class="soc-card critical">
+                <span class="soc-title">Threat Level</span>
+                <h2 id="threatLevel">CRITICAL</h2>
+            </div>
+            <div class="soc-card">
+                <span class="soc-title">AI Risk Score</span>
+                <h2 id="riskScore">87 / 100</h2>
+            </div>
+            <div class="soc-card">
+                <span class="soc-title">AI Confidence</span>
+                <h2 id="aiConfidence">96%</h2>
+            </div>
+            <div class="soc-card">
+                <span class="soc-title">Active Incidents</span>
+                <h2 id="activeIncidents">4</h2>
+            </div>
+        </section>
+
+        <!-- ==========================================================
+             DASHBOARD PAGE
+        =========================================================== -->
+
+        <section id="dashboardPage" class="page active-page">
+
+            <section class="cards">
+
+                <div class="card">
+
+                    <h3>CPU Usage</h3>
+
+                    <h2 id="cpuUsage">0%</h2>
+
+                    <div class="progress">
+
+                        <div id="cpuBar" class="progress-fill"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Memory</h3>
+
+                    <h2 id="memoryUsage">0%</h2>
+
+                    <div class="progress">
+
+                        <div id="memoryBar" class="progress-fill"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Disk</h3>
+
+                    <h2 id="diskUsage">0%</h2>
+
+                    <div class="progress">
+
+                        <div id="diskBar" class="progress-fill"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Network</h3>
+
+                    <h2 id="networkUsage">0 MB</h2>
+
+                </div>
+
+            </section>
+
+            <section class="dashboard-grid">
+
+                <div class="panel">
+
+                    <h3>📈 Live Performance</h3>
+
+                    <canvas id="cpuChart"></canvas>
+
+                </div>
+
+                <div class="panel">
+
+                    <h3>🛡 System Health</h3>
+
+                    <div id="healthCard">
+
+                        <div id="healthScore">100</div>
+
+                        <div id="healthStatus">Excellent</div>
+
+                        <div class="health-divider"></div>
+
+                        <div class="health-row">
+
+                            <span>CPU</span>
+
+                            <span id="cpuState">✔</span>
+
+                        </div>
+
+                        <div class="health-row">
+
+                            <span>Memory</span>
+
+                            <span id="memoryState">✔</span>
+
+                        </div>
+
+                        <div class="health-row">
+
+                            <span>Disk</span>
+
+                            <span id="diskState">✔</span>
+
+                        </div>
+
+                        <div class="health-row">
+
+                            <span>Threats</span>
+
+                            <span id="threatState">✔</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+        <!-- ==========================================================
+             PROCESSES PAGE
+        =========================================================== -->
+
+        <section id="processesPage" class="page">
+
+            <div class="panel">
+
+                <h3>💻 Running Processes</h3>
+
+                <table id="processTable">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>PID</th>
+
+                            <th>Name</th>
+
+                            <th>CPU %</th>
+
+                            <th>Memory</th>
+
+                            <th>Risk</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+        <!-- ==========================================================
+        INCIDENT CENTER
+        ========================================================== -->
+        <section id="incidentPage" class="page">
+            <div class="panel">
+                <h3>🚨 AI Incident Center</h3>
+                <div id="incidentContainer">
+                    <div class="emptyIncident">
+                        <h2>🛡 No Active Incidents</h2>
+                        <p>AI is continuously monitoring your system.</p>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="panel">
+            <div class="audit-header">
+                 <h3>📜 Security Audit Logs</h3>
+                 <button id="clearLogsBtn">🗑 Clear Logs</button>
+            </div>
+             <div id="auditLogs" class="audit-logs">
+                <p>No audit logs available.</p>
+            </div>
+        </div>
+        </section>
+        <!-- ==========================================================
+             AI PAGE
+        =========================================================== -->
+
+        <section id="aiPage" class="page">
+
+            <div class="panel">
+
+                <h3>🤖 AI Security Advisor</h3>
+
+                <div id="aiAdvisor">
+
+                    Waiting for analysis...
+
+                </div>
+
+            </div>
+
+        </section>
+                <!-- ==========================================================
+             REPORTS PAGE
+        =========================================================== -->
+
+        <section id="reportsPage" class="page">
+
+            <div class="panel">
+
+                <h3>📄 Reports</h3>
+
+                <p>
+                    Generate a complete security report including
+                    CPU, Memory, Disk, Network, Alerts and AI Analysis.
+                </p>
+
+                <br>
+
+                <button id="downloadReport">
+                    📥 Generate Security Report
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- ==========================================================
+             SETTINGS PAGE
+        =========================================================== -->
+
+        <section id="settingsPage" class="page">
+
+            <div class="panel">
+
+                <h3>⚙ Settings</h3>
+
+                <div class="setting-item">
+
+                    <span>🌙 Dark Mode</span>
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="themeToggle"
+                            checked>
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+                <hr>
+                <div class="setting-item">
+                    <span>⏱ Refresh Interval</span>
+                    <select id="refreshRate">
+                        <option value="2000">2 Seconds</option>
+                        <option value="5000">5 Seconds</option>
+                        <option value="10000">10 Seconds</option>
+                    </select>
+                </div>
+                <div class="about-section">
+                    <h3>ℹ About AEGIS-X</h3>
+                    <p><strong>Version:</strong> 1.0.0</p>
+                    <p><strong>Developed By:</strong> Prateek Verma</p>
+                    <p>Autonomous AI Security Operations Center</p>
+                    <p class="copyright">© 2026 AEGIS-X. All Rights Reserved.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- ===========================
+     Error Modal
+=========================== -->
+
+<div id="errorModal" class="error-modal">
+
+    <div class="error-box">
+
+        <h2 id="errorTitle">⚠ Error</h2>
+
+        <p id="errorMessage"></p>
+
+        <button onclick="location.reload()">
+            Retry
+        </button>
+
+    </div>
+
+</div>
+
+    <!-- ==========================================================
+         Scripts
+    =========================================================== -->
+
+    <script type="module" src="js/dashboard.js"></script>
+
+    <script type="module" src="js/theme.js"></script>
+
+    <script type="module" src="js/navigation.js"></script>
+    <script type="module" src="js/toast.js"></script>
+
+</body>
+
+</html>
