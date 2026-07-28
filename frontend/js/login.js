@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:8000";
+const API = "https://aegis-x-nibr.onrender.com";
 
 const loginForm = document.getElementById("loginForm");
 const loginBtn = document.getElementById("loginBtn");

@@ -39,7 +39,9 @@ async function loadAuditLogs() {
     try {
 
         const token = localStorage.getItem("token");
-        const response = await fetch("http://127.0.0.1:8000/logs", {
+        const response = await fetch("https://aegis-x-nibr.onrender.com",
+             {
+            method: "POST",
             headers: {
                  Authorization: `Bearer ${token}`
                 }
@@ -483,7 +485,8 @@ async function resolveIncident(pid, button) {
 
         const token = localStorage.getItem("token");
 
-        await fetch(`http://127.0.0.1:8000/resolve/${pid}`,{
+        await fetch(`https://aegis-x-nibr.onrender.com/resolve/${pid}`,
+            {
             method:"POST",
             headers:{
             Authorization:`Bearer ${token}`
@@ -605,7 +608,7 @@ if (reportButton) {
         try {
 
             const response = await fetch(
-                "http://127.0.0.1:8000/report",
+                "https://aegis-x-nibr.onrender.com/report",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -658,7 +661,8 @@ if (clearLogsBtn) {
 
         const token = localStorage.getItem("token");
 
-        await fetch("http://127.0.0.1:8000/logs/clear",{
+        await fetch("https://aegis-x-nibr.onrender.com/logs/clear",
+            {
             method:"POST",
             headers:{
                 Authorization:`Bearer ${token}`
